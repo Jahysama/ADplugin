@@ -27,10 +27,6 @@
 # CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
 # CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 # ----------------------------------------------------------------------
-
-#================================================================
-
-
 import sys,os,math,re, fnmatch, shutil
 from os import stat
 from os.path import abspath
