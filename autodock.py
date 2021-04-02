@@ -41,11 +41,11 @@ else:
 adplugin_font_name = adplugin_font[0]
 adplugin_font_size = int(adplugin_font[1])
 if not (adplugin_font_name in Pmw.logicalfontnames()):
-    print "'"+adplugin_font_name+"' not in ", Pmw.logicalfontnames()
-    print "changing to Courier"
+    print( "'"+adplugin_font_name+"' not in ", Pmw.logicalfontnames())
+    print( "changing to Courier")
     adplugin_font_name = "Courier"
 if adplugin_font_size < 4 or adplugin_font_size > 36:
-    print "'"+str(adplugin_font_size)+ "' not an acceptable font size, changing to 12"
+    print ("'"+str(adplugin_font_size)+ "' not an acceptable font size, changing to 12")
     adplugin_font_size = 12
 adplugin_font = (adplugin_font_name,adplugin_font_size)
 
@@ -68,7 +68,7 @@ def getstatusoutput(cmd):
         stderr=subprocess.STDOUT, stdin=subprocess.PIPE)
     except subprocess.CalledProcessError as e:
         sts = 256
-        print "getstatusoutput failed"
+        print ("getstatusoutput failed")
         print output, e.output
     return sts, output
 
@@ -379,17 +379,17 @@ class ADGridMap:
         spacing = self.spacing
         vals = self.values
 
-        print >>fp,'#=================================='
-        print >>fp,'# AutoGrid Map File: %s' % self.name
-        print >>fp,'# Receptor File Name: %s' % self.molecule
-        print >>fp,'#=================================='
-        print >>fp,'object 1 class gridpositions counts %d %d %d' % (nx,ny,nz)
-        print >>fp,'origin %12.5E %12.5E %12.5E' % (ori[0],ori[1],ori[2])
-        print >>fp,'delta %12.5E %12.5E %12.5E' % (spacing,0,0)
-        print >>fp,'delta %12.5E %12.5E %12.5E' % (0,spacing,0)
-        print >>fp,'delta %12.5E %12.5E %12.5E' % (0,0,spacing)
-        print >>fp,'object 2 class gridconnections counts %d %d %d' % (nx,ny,nz)
-        print >>fp,'object 3 class array type double rank 0 items %d data follows' % len(vals)
+        print (>>fp,'#==================================')
+        print (>>fp,'# AutoGrid Map File: %s' % self.name)
+        print (>>fp,'# Receptor File Name: %s' % self.molecule)
+        print (>>fp,'#==================================')
+        print (>>fp,'object 1 class gridpositions counts %d %d %d' % (nx,ny,nz))
+        print (>>fp,'origin %12.5E %12.5E %12.5E' % (ori[0],ori[1],ori[2]))
+        print (>>fp,'delta %12.5E %12.5E %12.5E' % (spacing,0,0))
+        print (>>fp,'delta %12.5E %12.5E %12.5E' % (0,spacing,0))
+        print (>>fp,'delta %12.5E %12.5E %12.5E' % (0,0,spacing))
+        print (>>fp,'object 2 class gridconnections counts %d %d %d' % (nx,ny,nz))
+        print (>>fp,'object 3 class array type double rank 0 items %d data follows' % len(vals))
         for k in range(nz):
             col=0;
             for j in range(ny):
@@ -397,13 +397,13 @@ class ADGridMap:
                     fp.write(" %12.5E" % vals[i*ny*nz + j*nz + k])
                     col+=1;
                     if col==3:
-                        print >>fp
+                        print (>>fp)
                         col=0
-        print >>fp,'attribute \"dep\" string \"positions\"'
-        print >>fp,'object \"regular positions regular connections\" class field'
-        print >>fp,'component \"positions\" value 1'
-        print >>fp,'component \"connections\" value 2'
-        print >>fp,'component \"data\" value 3'
+        print (>>fp,'attribute \"dep\" string \"positions\"')
+        print (>>fp,'object \"regular positions regular connections\" class field')
+        print (>>fp,'component \"positions\" value 1')
+        print (>>fp,'component \"connections\" value 2')
+        print (>>fp,'component \"data\" value 3')
         fp.close()
 
 #==========================================================================
@@ -430,7 +430,7 @@ class Receptor:
             for idx, resname in val:
                 lst.append( resname + str(idx) )
             s+=':'+key+':'+'_'.join(lst)
-            print "adding '"+spacer+':'+key+':'+'_'.join(lst)+"' to flex_res_str"
+            print ("adding '"+spacer+':'+key+':'+'_'.join(lst)+"' to flex_res_str")
             flex_res_str+=(spacer + s)
             spacer = ','+os.path.basename(self.receptor_pdbqt)[:-6]
         return flex_res_str
