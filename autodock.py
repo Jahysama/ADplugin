@@ -29,6 +29,30 @@
 # ----------------------------------------------------------------------
 
 #================================================================
+
+---  autodock.py.old	2017-10-23 21:13:48.000000000 +0100
++++ autodock.py	2017-10-23 21:15:42.000000000 +0100
+@@ -41,7 +41,7 @@
+ import Pmw
+ from threading import Thread
+ #from commands import getstatusoutput
+-from pymol import cmd,selector
++from pymol import cmd,selector,plugins
+ from pymol.cmd import _feedback,fb_module,fb_mask,is_list,_cmd
+ from pymol.cgo import *
+ from pymol import stored
+@@ -117,7 +117,8 @@
+ #
+ #     SOME BASIC THINGIES
+ #
+-
++app = plugins.get_pmgapp()
++root = plugins.get_tk_root()
+ global_status = StringVar()
+ global_status.set("")
+ transfer_status = {}
+
+
 import sys,os,math,re, fnmatch, shutil
 from os import stat
 from os.path import abspath
